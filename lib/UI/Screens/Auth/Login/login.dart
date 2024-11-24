@@ -1,3 +1,5 @@
+import 'package:e_commerce/UI/Screens/Auth/Register/register.dart';
+import 'package:e_commerce/Utilities/add_logo.dart';
 import 'package:e_commerce/Utilities/app_constants.dart';
 import 'package:e_commerce/Utilities/custome_textField_decoration.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +23,7 @@ class _LoginState extends State<Login> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch  ,
             children: [
-              Image.asset(AppConstants.appLogo , height: MediaQuery.of(context).size.height * 0.3, width: MediaQuery.of(context).size.width * 0.3,),
+              AddLogo(),
               Text("Welcome Back To E-Commerce",style: AppConstants.loginScreenTexts,),
               SizedBox(height: 5,),
               Text("Please sign in with your email", style: AppConstants.loginTextFieldTilte.copyWith(fontSize: 16),),
@@ -43,7 +45,21 @@ class _LoginState extends State<Login> {
               SizedBox(height: 20,),
               ElevatedButton(onPressed: (){}, child: Text("Login" , style: AppConstants.loginTextFieldTilte.copyWith(color: AppConstants.blueBackgroundColor),)),
               SizedBox(height: 15,),
-              Text("Don't have an account ? Create Account" ,style: AppConstants.loginTextFieldTilte.copyWith(fontSize: 16)),
+              Row(
+                children: [
+                  Text("Don't have an account ?" ,style: AppConstants.loginTextFieldTilte.copyWith(fontSize: 16)),
+                  SizedBox(width: 5,),
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushNamed(context, Register.routeName);
+                    },
+                    child:Text("Create Account " ,style: AppConstants.loginTextFieldTilte.copyWith(fontSize: 16)),
+
+                  ),
+
+                ],
+              ),
+
             ],
           ),
         ),
