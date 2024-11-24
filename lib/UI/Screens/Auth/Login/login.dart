@@ -4,6 +4,7 @@ import 'package:e_commerce/Utilities/app_constants.dart';
 import 'package:e_commerce/Utilities/custome_textField_decoration.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../Utilities/app_colors.dart';
 import '../../Home/home.dart';
 
 class Login extends StatefulWidget {
@@ -21,7 +22,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppConstants.blueBackgroundColor,
+      backgroundColor: AppColors.blueBackgroundColor,
       body: Form(
         key: formKey,
         child: Padding(
@@ -70,7 +71,7 @@ class _LoginState extends State<Login> {
                 SizedBox(height: 20,),
                 ElevatedButton(onPressed: (){
                   Validation();
-                }, child: Text("Login" , style: AppConstants.loginTextFieldTilte.copyWith(color: AppConstants.blueBackgroundColor),)),
+                }, child: Text("Login" , style: AppConstants.loginTextFieldTilte.copyWith(color: AppColors.blueBackgroundColor),)),
                 SizedBox(height: 15,),
                 Row(
                   children: [

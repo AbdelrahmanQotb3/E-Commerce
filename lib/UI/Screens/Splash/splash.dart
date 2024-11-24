@@ -1,6 +1,8 @@
 import 'package:e_commerce/Utilities/app_constants.dart';
 import 'package:flutter/material.dart';
 
+import '../../../Utilities/app_colors.dart';
+import '../../../Utilities/app_images.dart';
 import '../Auth/Login/login.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -23,12 +25,12 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppConstants.blueBackgroundColor,
+      backgroundColor: AppColors.blueBackgroundColor,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-              child: Image.asset(AppConstants.appLogo)
+              child: Image.asset(AppImages.appLogo)
           ),
           Center(child: Text(AppConstants.splashTitle , style:  AppConstants.splashTitleStyle,)),
         ],

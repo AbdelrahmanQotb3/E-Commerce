@@ -1,5 +1,6 @@
 import 'package:e_commerce/UI/Screens/Auth/Login/login.dart';
 import 'package:e_commerce/Utilities/add_logo.dart';
+import 'package:e_commerce/Utilities/app_colors.dart';
 import 'package:e_commerce/Utilities/app_constants.dart';
 import 'package:e_commerce/Utilities/custome_textField_decoration.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,7 @@ GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
 
     return Scaffold(
-      backgroundColor: AppConstants.blueBackgroundColor,
+      backgroundColor: AppColors.blueBackgroundColor,
       body: Form(
         key: formKey,
         child: Padding(
@@ -94,7 +95,7 @@ GlobalKey<FormState> formKey = GlobalKey<FormState>();
                 SizedBox(height: 20,),
                 ElevatedButton(onPressed: (){
                   Validation();
-                }, child: Text("Sign Up " , style: AppConstants.loginTextFieldTilte.copyWith(color: AppConstants.blueBackgroundColor),)),
+                }, child: Text("Sign Up " , style: AppConstants.loginTextFieldTilte.copyWith(color: AppColors.blueBackgroundColor),)),
 
               ],
             ),
