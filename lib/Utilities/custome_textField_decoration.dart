@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 
-class CustomTextfieldDecoration extends StatelessWidget {
+class CustomTextFieldDecoration extends StatelessWidget {
   String textFieldTitle;
-  CustomTextfieldDecoration({super.key , required this.textFieldTitle});
+  TextEditingController Controller ;
+  FormFieldValidator<String> Validator ;
+  CustomTextFieldDecoration({super.key , required this.textFieldTitle , required this.Controller , required this.Validator});
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      keyboardType: TextInputType.phone,
+    return TextFormField(
+      controller: Controller ,
+      keyboardType: TextInputType.text,
       decoration: InputDecoration(
         hintText: textFieldTitle,
         hintStyle: const TextStyle(),
@@ -18,6 +21,8 @@ class CustomTextfieldDecoration extends StatelessWidget {
           borderSide: BorderSide.none,
         ),
       ),
+      validator: Validator ,
+
     );
   }
 }

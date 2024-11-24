@@ -1,4 +1,5 @@
 import 'package:e_commerce/UI/Screens/Auth/Register/register.dart';
+import 'package:e_commerce/UI/Screens/Home/home.dart';
 import 'package:e_commerce/Utilities/app_constants.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         SplashScreen.routeName: (_) => SplashScreen(),
         Login.routeName: (_) => Login(),
         Register.routeName : (_) => Register(),
+        Home.routeName : (_) => Home(),
       },
       initialRoute: Login.routeName,
     );
