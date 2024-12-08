@@ -11,6 +11,7 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import 'Data/Repositories/AuthRepositories/auth_repo.dart' as _i933;
 import 'UI/Screens/Auth/Login/cubit/login_view_model.dart' as _i62;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -24,7 +25,8 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
-    gh.factory<_i62.LoginViewModel>(() => _i62.LoginViewModel());
+    gh.factory<_i62.LoginViewModel>(
+        () => _i62.LoginViewModel(gh<_i933.AuthRepository>()));
     return this;
   }
 }

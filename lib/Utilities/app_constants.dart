@@ -20,4 +20,9 @@ abstract class AppConstants{
       fontWeight: FontWeight.bold
 
   );
+  static TextStyle dialogText = TextStyle(
+    fontSize: 20,
+    color: Colors.black,
+    fontWeight: FontWeight.bold
+  );
 }

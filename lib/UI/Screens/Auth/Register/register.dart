@@ -1,8 +1,8 @@
 import 'package:e_commerce/UI/Screens/Auth/Login/login.dart';
-import 'package:e_commerce/Utilities/add_logo.dart';
+import 'package:e_commerce/Widgets/add_logo.dart';
 import 'package:e_commerce/Utilities/app_colors.dart';
 import 'package:e_commerce/Utilities/app_constants.dart';
-import 'package:e_commerce/Utilities/custome_textField_decoration.dart';
+import 'package:e_commerce/Widgets/custome_textField_decoration.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
@@ -14,11 +14,13 @@ class Register extends StatefulWidget {
   State<Register> createState() => _RegisterState();
 }
 
-class _RegisterState extends State<Register> {TextEditingController nameController = TextEditingController();
-TextEditingController mobileNumberController = TextEditingController();
-TextEditingController emailController = TextEditingController();
-TextEditingController passwordController = TextEditingController();
-GlobalKey<FormState> formKey = GlobalKey<FormState>();
+class _RegisterState extends State<Register> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController mobileNumberController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +93,18 @@ GlobalKey<FormState> formKey = GlobalKey<FormState>();
                     }
                     return null;
                   },
+                ),
+                SizedBox(height: 12,),
+                Text("Confirm Password" , style: AppConstants.loginTextFieldTilte,),
+                SizedBox(height: 12,),
+                CustomTextFieldDecoration(
+                    textFieldTitle: "confirm password",
+                    Controller: confirmPasswordController,
+                    Validator: (text){
+                      if(text == null || text.trim().isEmpty || text != passwordController.text){
+                        return "Password doesn't match";
+                      }
+                    }
                 ),
                 SizedBox(height: 20,),
                 ElevatedButton(onPressed: (){

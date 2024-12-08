@@ -1,6 +1,7 @@
 import 'package:e_commerce/UI/Screens/Auth/Register/register.dart';
 import 'package:e_commerce/UI/Screens/Home/home.dart';
 import 'package:e_commerce/Utilities/app_constants.dart';
+import 'package:e_commerce/di.dart';
 import 'package:flutter/material.dart';
 
 import 'UI/Screens/Auth/Login/login.dart';
@@ -8,6 +9,7 @@ import 'UI/Screens/Splash/splash.dart';
 
 
 void main() {
+  configureDependencies();
   runApp(const MyApp());
 }
 
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
         Register.routeName : (_) => Register(),
         Home.routeName : (_) => Home(),
       },
-      initialRoute: Login.routeName,
+      initialRoute: SplashScreen.routeName,
     );
   }
 }
