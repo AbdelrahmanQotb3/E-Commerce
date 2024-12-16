@@ -1,4 +1,3 @@
-
 abstract class AuthRepository {
   Future Login(String userName, String password);
 
@@ -6,5 +5,6 @@ abstract class AuthRepository {
       {required userName,
       required email,
       required mobileNumber,
-      required password});
+      required password,
+      required rePassword});
 }

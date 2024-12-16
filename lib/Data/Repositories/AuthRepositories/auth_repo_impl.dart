@@ -10,16 +10,21 @@ class AuthRepositoryImpl extends AuthRepository{
   @override
   Future Login(String userName, String password) async {
     if(await connectionChecker.hasConnection ){
-      await authRemoteDataSource.Login(userName, password);
+       await authRemoteDataSource.Login(userName, password);
     }else{
       throw "Check your internet connection";
     }
   }
 
   @override
-  Future Register({required userName, required email, required mobileNumber, required password}) {
-    // TODO: implement Register
-    throw UnimplementedError();
+  Future Register ({required userName, required email, required mobileNumber, required password, required rePassword}) async {
+    if(await connectionChecker.hasConnection){
+      await authRemoteDataSource.Register(userName: userName, email: email, mobileNumber: mobileNumber, password: password, rePassword: rePassword);
+    }else{
+      throw "Check your internet connection";
+    }
   }
+
+
 
 }
