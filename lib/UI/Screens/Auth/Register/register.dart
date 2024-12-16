@@ -30,16 +30,15 @@ class _RegisterState extends State<Register> {
     return BlocListener<RegisterViewModel , BaseState>(
       bloc: viewModel,
       listener: (context , state){
-        if(state.state == BaseScreenState.loading){
+        print("Register state received: ${state.state}");
+        if (state.state == BaseScreenState.loading) {
           DialogUtil.showLoading(context);
-        }
-        if(state.state == BaseScreenState.success){
-          Navigator.pop(context);
+        } else if (state.state == BaseScreenState.success) {
+          Navigator.pop(context); // Close loading dialog
           Navigator.pushReplacementNamed(context, Login.routeName);
-        }
-        if(state.state == BaseScreenState.failure){
-          Navigator.pop(context);
-          DialogUtil.showError(context, "Register Error");
+        } else if (state.state == BaseScreenState.failure) {
+          Navigator.pop(context); // Close loading dialog
+          DialogUtil.showError(context, state.errorMessage ?? "Registration failed.");
         }
       },
       child: Scaffold(
@@ -61,19 +60,6 @@ class _RegisterState extends State<Register> {
                     Validator: (text){
                       if(text == null || text.trim().isEmpty){
                         return "Please enter a valid User Name";
-                      }
-                      return null;
-                    },
-                  ),
-                  SizedBox(height: 12,),
-                  Text("Mobile Number " , style: AppConstants.loginTextFieldTilte,),
-                  SizedBox(height: 12,),
-                  CustomTextFieldDecoration(
-                    textFieldTitle: "enter your mobile no." ,
-                    Controller: viewModel.mobileNumberController,
-                    Validator: (text){
-                      if(text == null || text.trim().isEmpty || text.length != 11){
-                        return "Please enter a valid Mobile Number";
                       }
                       return null;
                     },
@@ -121,6 +107,19 @@ class _RegisterState extends State<Register> {
                           return "Password doesn't match";
                         }
                       }
+                  ),
+                  SizedBox(height: 12,),
+                  Text("Mobile Number " , style: AppConstants.loginTextFieldTilte,),
+                  SizedBox(height: 12,),
+                  CustomTextFieldDecoration(
+                    textFieldTitle: "enter your mobile no." ,
+                    Controller: viewModel.mobileNumberController,
+                    Validator: (text){
+                      if(text == null || text.trim().isEmpty || text.length != 11){
+                        return "Please enter a valid Mobile Number";
+                      }
+                      return null;
+                    },
                   ),
                   SizedBox(height: 20,),
                   ElevatedButton(onPressed: (){

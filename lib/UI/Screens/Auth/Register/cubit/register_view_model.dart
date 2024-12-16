@@ -28,11 +28,17 @@ class RegisterViewModel extends Cubit<BaseState> {
           email: emailController.text,
           mobileNumber: mobileNumberController.text,
           password: passwordController.text,
-          rePassword: confirmPasswordController.text);
+          rePassword: confirmPasswordController.text
+      );
       emit(BaseState(state: BaseScreenState.success));
+      print("Registration success.");
     } catch (exception) {
+      print("Registration error: $exception");
       emit(BaseState(
-          state: BaseScreenState.failure, errorMessage: exception.toString()));
+          state: BaseScreenState.failure,
+          errorMessage: exception.toString()
+      ));
     }
   }
+
 }

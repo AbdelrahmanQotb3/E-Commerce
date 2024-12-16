@@ -10,7 +10,7 @@ class AuthRepositoryImpl extends AuthRepository{
   @override
   Future Login(String userName, String password) async {
     if(await connectionChecker.hasConnection ){
-       await authRemoteDataSource.Login(userName, password);
+       await authRemoteDataSource.login(userName, password);
     }else{
       throw "Check your internet connection";
     }
@@ -24,7 +24,5 @@ class AuthRepositoryImpl extends AuthRepository{
       throw "Check your internet connection";
     }
   }
-
-
 
 }

@@ -1,5 +1,5 @@
 abstract class AuthRemoteDataSource {
-  Future Login(String email, String password);
+  Future login(String email, String password);
 
   Future Register(
       {required userName,

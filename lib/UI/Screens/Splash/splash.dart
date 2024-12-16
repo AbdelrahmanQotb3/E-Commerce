@@ -1,4 +1,7 @@
+import 'package:e_commerce/Data/Utilites/shared_preference_utils.dart';
+import 'package:e_commerce/UI/Screens/Auth/Register/register.dart';
 import 'package:e_commerce/Utilities/app_constants.dart';
+import 'package:e_commerce/di.dart';
 import 'package:flutter/material.dart';
 
 import '../../../Utilities/app_colors.dart';
@@ -17,8 +20,15 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 2), (){
-      Navigator.pushReplacementNamed(context, Login.routeName);
+    Future.delayed(Duration(seconds: 2), () async {
+      SharedPreferencesUtils sharedPreferencesUtils = getIt();
+      String? token = await sharedPreferencesUtils.getToken();
+      if(token == null ){
+        Navigator.pushReplacementNamed(context, Login.routeName);
+      }
+      else{
+        Navigator.pushReplacementNamed(context, Register.routeName);
+      }
     });
   }
 

@@ -1,27 +1,21 @@
-/// message : "success"
-/// user : {"name":"Ahmed Abd Al-Muti","email":"ahmedmutt@gmail.com","role":"user"}
-/// token : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDZhZWYxZDU5NjA0YTlhMWJhZjU1NSIsIm5hbWUiOiJBaG1lZCBBYmQgQWwtTXV0aSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzM0MTg3NTMzLCJleHAiOjE3NDE5NjM1MzN9.JAit03iFYUEk5Ggb2_jw5pkwfxBDskJ1_W3F0GukrkE"
-
 class AuthResponse {
-  AuthResponse(
-      {required this.message,
-      this.user,
-      required this.token,
-      required this.statusMessage});
+  AuthResponse({
+    required this.message,
+    this.user,
+    required this.token,
+  });
 
   factory AuthResponse.fromJson(Map<String, dynamic> json) {
     return AuthResponse(
       message: json['message'] as String,
       user: json['user'] != null ? User.fromJson(json['user']) : null,
       token: json['token'] as String,
-      statusMessage: json['statusMsg'],
     );
   }
 
   final String message;
   final User? user;
   final String token;
-  final String statusMessage;
 
   AuthResponse copyWith({
     String? message,
@@ -29,26 +23,23 @@ class AuthResponse {
     String? token,
   }) {
     return AuthResponse(
-        message: message ?? this.message,
-        user: user ?? this.user,
-        token: token ?? this.token,
-        statusMessage: statusMessage);
+      message: message ?? this.message,
+      user: user ?? this.user,
+      token: token ?? this.token,
+    );
   }
 
   Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['message'] = message;
+    final map = <String, dynamic>{
+      'message': message,
+      'token': token,
+    };
     if (user != null) {
       map['user'] = user!.toJson();
     }
-    map['token'] = token;
     return map;
   }
 }
-
-/// name : "Ahmed Abd Al-Muti"
-/// email : "ahmedmutt@gmail.com"
-/// role : "user"
 
 class User {
   User({
@@ -82,10 +73,10 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['name'] = name;
-    map['email'] = email;
-    map['role'] = role;
-    return map;
+    return {
+      'name': name,
+      'email': email,
+      'role': role,
+    };
   }
 }
