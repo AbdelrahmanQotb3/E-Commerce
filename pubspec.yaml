@@ -41,6 +41,7 @@ dependencies:
   injectable_generator: ^2.6.2
   internet_connection_checker_plus: ^1.0.1
   http: ^0.13.6
+  shared_preferences: ^2.3.3
 
 
 dev_dependencies:
