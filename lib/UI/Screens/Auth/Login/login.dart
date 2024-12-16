@@ -30,12 +30,16 @@ class _LoginState extends State<Login> {
     return BlocListener<LoginViewModel , BaseState>(
       bloc: viewModel,
       listener: (context , state){
+        print("received state = ${state.state} ");
         if(state.state == BaseScreenState.loading){
           DialogUtil.showLoading(context);
-        }else if(state.state == BaseScreenState.failure){
-          DialogUtil.showError(context, state.errorMessage!);
-        }else if(state.state == BaseScreenState.success){
+        }if(state.state == BaseScreenState.success){
+          Navigator.pop(context);
           Navigator.pushReplacementNamed(context, Home.routeName);
+        }
+        if(state.state == BaseScreenState.failure){
+          Navigator.pop(context);
+          DialogUtil.showError(context, "Error Login");
         }
       },
       child: Scaffold(
@@ -65,18 +69,18 @@ class _LoginState extends State<Login> {
                     height: 15,
                   ),
                   Text(
-                    "User Name",
+                    "Email",
                     style: AppConstants.loginTextFieldTilte,
                   ),
                   SizedBox(
                     height: 12,
                   ),
                   CustomTextFieldDecoration(
-                    textFieldTitle: "enter your name",
+                    textFieldTitle: "enter your email",
                     Controller: viewModel.nameController,
                     Validator: (text) {
                       if (text == null || text.trim().isEmpty) {
-                        return "Please enter a valid User Name";
+                        return "Please enter a valid Email";
                       }
                       return null;
                     },

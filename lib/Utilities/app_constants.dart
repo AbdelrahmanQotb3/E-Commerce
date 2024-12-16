@@ -25,4 +25,5 @@ abstract class AppConstants{
     color: Colors.black,
     fontWeight: FontWeight.bold
   );
+  static String defaultMessageError = "something went wrong, please try again later ";
 }

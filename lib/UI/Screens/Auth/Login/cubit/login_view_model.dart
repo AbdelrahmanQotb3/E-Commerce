@@ -21,6 +21,7 @@ class LoginViewModel extends Cubit<BaseState> {
       emit(BaseState(state: BaseScreenState.loading));
       await authRepository.Login(nameController.text, passwordController.text);
       emit(BaseState(state: BaseScreenState.success));
+      print("emit Success has been done");
     } catch (exception) {
       emit(BaseState(
           state: BaseScreenState.failure, errorMessage: exception.toString()));
