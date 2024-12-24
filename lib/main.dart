@@ -1,10 +1,10 @@
 import 'package:e_commerce/UI/Screens/Auth/Register/register.dart';
-import 'package:e_commerce/UI/Screens/Home/home.dart';
 import 'package:e_commerce/Utilities/app_constants.dart';
 import 'package:e_commerce/di.dart';
 import 'package:flutter/material.dart';
 
 import 'UI/Screens/Auth/Login/login.dart';
+import 'UI/Screens/Main/Home/home.dart';
 import 'UI/Screens/Splash/splash.dart';
 
 

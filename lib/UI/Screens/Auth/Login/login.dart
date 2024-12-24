@@ -2,7 +2,6 @@ import 'package:e_commerce/Base/base_state.dart';
 import 'package:e_commerce/Base/enums/base_screen_state.dart';
 import 'package:e_commerce/UI/Screens/Auth/Login/cubit/login_view_model.dart';
 import 'package:e_commerce/UI/Screens/Auth/Register/register.dart';
-import 'package:e_commerce/UI/Screens/Home/home.dart';
 import 'package:e_commerce/Utilities/dialog_util.dart';
 import 'package:e_commerce/Widgets/add_logo.dart';
 import 'package:e_commerce/Utilities/app_constants.dart';
@@ -12,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../Utilities/app_colors.dart';
+import '../../Main/Home/home.dart';
 
 class Login extends StatefulWidget {
   static String routeName = "LoginScreen";
