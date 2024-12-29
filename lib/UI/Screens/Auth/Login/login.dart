@@ -2,6 +2,7 @@ import 'package:e_commerce/Base/base_state.dart';
 import 'package:e_commerce/Base/enums/base_screen_state.dart';
 import 'package:e_commerce/UI/Screens/Auth/Login/cubit/login_view_model.dart';
 import 'package:e_commerce/UI/Screens/Auth/Register/register.dart';
+import 'package:e_commerce/UI/Screens/Main/main_screen.dart';
 import 'package:e_commerce/Utilities/dialog_util.dart';
 import 'package:e_commerce/Widgets/add_logo.dart';
 import 'package:e_commerce/Utilities/app_constants.dart';
@@ -11,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../Utilities/app_colors.dart';
-import '../../Main/Home/home.dart';
+import '../../Main/Home/home_tab.dart';
 
 class Login extends StatefulWidget {
   static String routeName = "LoginScreen";
@@ -35,7 +36,7 @@ class _LoginState extends State<Login> {
           DialogUtil.showLoading(context);
         }if(state.state == BaseScreenState.success){
           Navigator.pop(context);
-          Navigator.pushReplacementNamed(context, Home.routeName);
+          Navigator.pushReplacementNamed(context, MainScreen.routeName);
         }
         if(state.state == BaseScreenState.failure){
           Navigator.pop(context);

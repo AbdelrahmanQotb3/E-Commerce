@@ -23,6 +23,8 @@ import 'Data/Utilites/shared_preference_utils.dart' as _i261;
 import 'third_party_packaeg_module.dart' as _i520;
 import 'UI/Screens/Auth/Login/cubit/login_view_model.dart' as _i62;
 import 'UI/Screens/Auth/Register/cubit/register_view_model.dart' as _i776;
+import 'UI/Screens/Main/Main%20Screen%20View%20Model/main_screen_view_model.dart'
+    as _i238;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -40,6 +42,7 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i261.SharedPreferencesUtils());
     gh.factory<_i161.InternetConnectionCheckerPlus>(
         () => thirdPartyPackagesModule.provideInternetConnection());
+    gh.factory<_i238.MainScreenViewModel>(() => _i238.MainScreenViewModel());
     gh.factory<_i918.AuthRemoteDataSource>(() =>
         _i967.AuthRemoteDataSourceImpl(gh<_i261.SharedPreferencesUtils>()));
     gh.factory<_i933.AuthRepository>(() => _i890.AuthRepositoryImpl(
