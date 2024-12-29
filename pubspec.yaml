@@ -42,6 +42,7 @@ dependencies:
   internet_connection_checker_plus: ^1.0.1
   http: ^0.13.6
   shared_preferences: ^2.3.3
+  carousel_slider: ^5.0.0
 
 
 dev_dependencies:

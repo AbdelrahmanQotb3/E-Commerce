@@ -26,4 +26,9 @@ abstract class AppConstants{
     fontWeight: FontWeight.bold
   );
   static String defaultMessageError = "something went wrong, please try again later ";
+  static TextStyle homeTabCategoriesText = TextStyle(
+    color: Color(0xff06004F),
+    fontSize: 20,
+    fontWeight: FontWeight.w500
+  );
 }
