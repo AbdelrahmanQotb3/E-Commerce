@@ -43,7 +43,7 @@ class _MainScreenState extends State<MainScreen> {
               backgroundColor: AppColors.blueBackgroundColor,
               showSelectedLabels: false,
               showUnselectedLabels: false,
-              currentIndex: 0,
+              currentIndex: state.currentSelectedTab,
               onTap: (index) {
                 viewModel.setNewTab(index);
               },
