@@ -19,10 +19,16 @@ import 'Data/Repositories/AuthRepositories/Data%20Sources/auth-remote_data_sourc
     as _i918;
 import 'Data/Repositories/AuthRepositories/Data%20Sources/auth_remote_data_source_impl.dart'
     as _i967;
+import 'Data/Repositories/MainScreenRepositories/main_screen_repositories.dart'
+    as _i1003;
+import 'Data/Repositories/MainScreenRepositories/main_screen_repositories_impl.dart'
+    as _i113;
 import 'Data/Utilites/shared_preference_utils.dart' as _i261;
 import 'third_party_packaeg_module.dart' as _i520;
 import 'UI/Screens/Auth/Login/cubit/login_view_model.dart' as _i62;
 import 'UI/Screens/Auth/Register/cubit/register_view_model.dart' as _i776;
+import 'UI/Screens/Main/Home/Home%20Tab%20View%20Model/home_tab_view_model.dart'
+    as _i15;
 import 'UI/Screens/Main/Main%20Screen%20View%20Model/main_screen_view_model.dart'
     as _i238;
 
@@ -45,6 +51,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i238.MainScreenViewModel>(() => _i238.MainScreenViewModel());
     gh.factory<_i918.AuthRemoteDataSource>(() =>
         _i967.AuthRemoteDataSourceImpl(gh<_i261.SharedPreferencesUtils>()));
+    gh.factory<_i1003.MainScreenRepositories>(() =>
+        _i113.MainScreenRepositoriesImpl(
+            gh<_i161.InternetConnectionCheckerPlus>()));
     gh.factory<_i933.AuthRepository>(() => _i890.AuthRepositoryImpl(
           gh<_i161.InternetConnectionCheckerPlus>(),
           gh<_i918.AuthRemoteDataSource>(),
@@ -53,6 +62,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i62.LoginViewModel(gh<_i933.AuthRepository>()));
     gh.factory<_i776.RegisterViewModel>(
         () => _i776.RegisterViewModel(gh<_i933.AuthRepository>()));
+    gh.factory<_i15.HomeTabViewModel>(
+        () => _i15.HomeTabViewModel(gh<_i1003.MainScreenRepositories>()));
     return this;
   }
 }
