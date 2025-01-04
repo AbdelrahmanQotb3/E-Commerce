@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_commerce/Base/enums/base_screen_state.dart';
 import 'package:e_commerce/Data/Model/CategoriesResponse.dart';
+import 'package:e_commerce/Data/Model/ProductsRespone.dart';
 import 'package:e_commerce/UI/Screens/Main/Home/Home%20Tab%20View%20Model/home_tab_state.dart';
 import 'package:e_commerce/UI/Screens/Main/Home/Home%20Tab%20View%20Model/home_tab_view_model.dart';
 import 'package:e_commerce/Utilities/app_constants.dart';
@@ -24,6 +25,7 @@ class _HomeTabState extends State<HomeTab> {
     // TODO: implement initState
     super.initState();
     viewModel.loadCategoriesTab();
+    viewModel.loadProductsTab();
   }
 
   @override
@@ -58,9 +60,8 @@ class _HomeTabState extends State<HomeTab> {
             builder: (context, state) {
               if (state.categoriesApi == BaseScreenState.failure) {
                 return SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.3,
-                  child: appError(error: state.errorMessage)
-                );
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    child: appError(error: state.errorMessage));
               } else if (state.categoriesApi == BaseScreenState.success) {
                 return SizedBox(
                   height: MediaQuery.of(context).size.height * 0.3,
@@ -68,9 +69,8 @@ class _HomeTabState extends State<HomeTab> {
                 );
               } else {
                 return SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.3,
-                  child:  LoadingView()
-                );
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    child: LoadingView());
               }
             },
           ),
@@ -82,8 +82,22 @@ class _HomeTabState extends State<HomeTab> {
               ),
             ],
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.3,
+          BlocBuilder<HomeTabViewModel, HomeTabState>(
+            bloc: viewModel,
+            builder: (context, state) {
+              if (state.productsApi == BaseScreenState.success) {
+                return SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  child: buildProductsList(state.products!),
+                );
+              } else if (state.productsApi == BaseScreenState.loading) {
+                return SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    child: LoadingView());
+              } else {
+                return appError(error: state.errorMessage);
+              }
+            },
           )
         ],
       ),
@@ -130,7 +144,12 @@ class _HomeTabState extends State<HomeTab> {
     return Column(
       children: [
         ClipOval(
-          child: Image.network(categoriesData.image , fit: BoxFit.fill, height: 80, width: 80,),
+          child: Image.network(
+            categoriesData.image,
+            fit: BoxFit.fill,
+            height: 80,
+            width: 80,
+          ),
         ),
         Spacer(),
         Text(
@@ -141,9 +160,38 @@ class _HomeTabState extends State<HomeTab> {
     );
   }
 
+  Widget LoadingView() {
+    return const Center(child: CircularProgressIndicator());
+  }
 
+  Widget buildProductsList(List<ProductsData> products) {
+    return GridView.builder(
+        itemCount: products.length,
+        gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return ProductItem(productsData: products[index]);
+        });
+  }
 
-  LoadingView() {
-    return Center(child: CircularProgressIndicator());
+  Widget ProductItem({required ProductsData productsData}) {
+    return Column(
+      children: [
+        ClipOval(
+          child: Image.network(
+            productsData.imageCover,
+            fit: BoxFit.fill,
+            height: 150,
+            width: 150,
+          ),
+        ),
+        Spacer(),
+        Text(
+          productsData.title,
+          style: AppConstants.homeTabCategoriesText.copyWith(fontSize: 12),
+        )
+      ],
+    );
   }
 }

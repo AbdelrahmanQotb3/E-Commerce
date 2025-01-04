@@ -15,6 +15,7 @@ class HomeTabState {
   List<ProductsData>? products;
   String errorMessage;
   BaseScreenState categoriesApi;
+  BaseScreenState productsApi;
 
   HomeTabState({
     this.ads = defaultAds,
@@ -22,6 +23,7 @@ class HomeTabState {
     this.products,
     this.errorMessage = "",
     this.categoriesApi = BaseScreenState.loading,
+    this.productsApi = BaseScreenState.loading
   });
 
   // CopyWith method for HomeTabState
@@ -31,6 +33,7 @@ class HomeTabState {
     List<ProductsData>? products,
     String? errorMessage,
     BaseScreenState? categoriesApi,
+    BaseScreenState? productsApi,
   }) {
     return HomeTabState(
       ads: ads ?? this.ads,
@@ -38,6 +41,7 @@ class HomeTabState {
       products: products ?? this.products,
       errorMessage: errorMessage ?? this.errorMessage,
       categoriesApi: categoriesApi ?? this.categoriesApi,
+      productsApi: productsApi ?? this.productsApi
     );
   }
 }

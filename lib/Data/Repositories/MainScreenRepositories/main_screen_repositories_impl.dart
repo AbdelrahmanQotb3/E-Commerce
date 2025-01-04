@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:e_commerce/Data/Model/CategoriesResponse.dart';
+import 'package:e_commerce/Data/Model/ProductsRespone.dart';
 import 'package:e_commerce/Data/Repositories/MainScreenRepositories/main_screen_repositories.dart';
 import 'package:e_commerce/Utilities/app_constants.dart';
 import 'package:e_commerce/Utilities/end_points.dart';
@@ -28,9 +29,19 @@ class MainScreenRepositoriesImpl extends MainScreenRepositories{
   }
 
   @override
-  Future<void> getProducts() async {
-    // TODO: implement getProducts
-    throw UnimplementedError();
+  Future getProducts() async {
+    if(await internetConnectionCheckerPlus.hasConnection){
+      Response serverResponse = await get(Uri.parse(EndPoints.getProducts));
+      ProductsResponse productsResponse = ProductsResponse.fromJson(jsonDecode(serverResponse.body));
+      if(serverResponse.statusCode >= 200 && serverResponse.statusCode < 300){
+        return productsResponse.data;
+      }else{
+        throw AppConstants.defaultMessageError;
+      }
+
+    }else{
+      throw AppConstants.internetErrorMessage;
+    }
   }
 
 }

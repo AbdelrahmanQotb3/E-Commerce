@@ -1,5 +1,6 @@
 import 'package:e_commerce/Base/enums/base_screen_state.dart';
 import 'package:e_commerce/Data/Model/CategoriesResponse.dart';
+import 'package:e_commerce/Data/Model/ProductsRespone.dart';
 import 'package:e_commerce/Data/Repositories/MainScreenRepositories/main_screen_repositories.dart';
 import 'package:e_commerce/UI/Screens/Main/Home/Home%20Tab%20View%20Model/home_tab_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,6 +20,16 @@ class HomeTabViewModel extends Cubit<HomeTabState>{
     }catch(e){
       emit(state.copyWith(categoriesApi:  BaseScreenState.failure , errorMessage: e.toString()));
       print("State failed ");
+    }
+  }
+
+  Future<void> loadProductsTab() async {
+    emit(state.copyWith(productsApi: BaseScreenState.loading));
+    try{
+      List<ProductsData> products = await mainScreenRepositories.getProducts();
+      emit(state.copyWith(productsApi: BaseScreenState.success , products: products));
+    }catch(exception){
+      emit(state.copyWith(productsApi: BaseScreenState.failure , errorMessage: exception.toString()));
     }
   }
 
