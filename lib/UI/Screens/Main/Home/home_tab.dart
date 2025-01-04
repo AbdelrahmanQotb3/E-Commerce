@@ -4,6 +4,7 @@ import 'package:e_commerce/Data/Model/CategoriesResponse.dart';
 import 'package:e_commerce/Data/Model/ProductsRespone.dart';
 import 'package:e_commerce/UI/Screens/Main/Home/Home%20Tab%20View%20Model/home_tab_state.dart';
 import 'package:e_commerce/UI/Screens/Main/Home/Home%20Tab%20View%20Model/home_tab_view_model.dart';
+import 'package:e_commerce/Utilities/app_colors.dart';
 import 'package:e_commerce/Utilities/app_constants.dart';
 import 'package:e_commerce/Utilities/app_error.dart';
 import 'package:e_commerce/di.dart';
@@ -170,28 +171,100 @@ class _HomeTabState extends State<HomeTab> {
         gridDelegate:
             const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
         scrollDirection: Axis.horizontal,
+        padding: EdgeInsets.all(12),
         itemBuilder: (context, index) {
           return ProductItem(productsData: products[index]);
         });
   }
 
   Widget ProductItem({required ProductsData productsData}) {
-    return Column(
-      children: [
-        ClipOval(
-          child: Image.network(
-            productsData.imageCover,
-            fit: BoxFit.fill,
-            height: 150,
-            width: 150,
-          ),
+    return Container(
+      padding: EdgeInsets.all(8),
+      margin: const EdgeInsets.all(10),
+      width: MediaQuery.of(context).size.width * 0.4,
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(Radius.circular(16)),
+        border: Border.all(
+            color: Colors.lightBlue, style: BorderStyle.solid, width: 0.5),
+        color: Colors.white,
+      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Expanded(
+          child: Stack(alignment: Alignment.topRight, children: [
+            Image.network(
+              productsData.imageCover,
+              fit: BoxFit.cover,
+              height: 100,
+              width: double.infinity,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Icon(
+                  Icons.favorite_sharp,
+                  color: AppColors.blueBackgroundColor,
+                ),
+              ],
+            )
+          ]),
         ),
-        Spacer(),
-        Text(
-          productsData.title,
-          style: AppConstants.homeTabCategoriesText.copyWith(fontSize: 12),
-        )
-      ],
+        
+        Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+          Row(
+            children: [
+              Flexible(
+                child: Text(
+                  productsData.title,
+                  style: AppConstants.dialogText.copyWith(fontSize: 15),
+                  maxLines: 1,
+                  textAlign: TextAlign.start,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Column(
+                children: [
+                  Text(
+                    "Review (${productsData.ratingsAverage})",
+                    style: AppConstants.dialogText.copyWith(fontSize: 15),
+                  ),
+                ],
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Icon(
+                    Icons.star,
+                    color: Colors.yellowAccent,
+                  )
+                ],
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Text(
+                "EGP ${productsData.price}",
+                style: AppConstants.dialogText.copyWith(fontSize: 15),
+              ),
+              Spacer(),
+              FloatingActionButton.small(
+                backgroundColor: AppColors.blueBackgroundColor,
+                shape:
+                    CircleBorder(side: BorderSide(color: Colors.transparent)),
+                child: Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ),
+                onPressed: () {},
+              )
+            ],
+          )
+        ]),
+      ]),
     );
   }
 }
